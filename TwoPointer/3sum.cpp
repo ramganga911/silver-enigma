@@ -10,7 +10,7 @@ vector<int> find3Sum(vector<int> &nums, int target) // Time complexity O(n^2) an
         return result;
     sort(nums.begin(), nums.end());
     int ans = INT_MAX;
-    for (int i = 0; i < n; i++)
+    for (int i = 0; i < n-2; i++)
     {
         int remaining = target - nums[i]; // remaining sum
         int j = i + 1;
@@ -19,7 +19,7 @@ vector<int> find3Sum(vector<int> &nums, int target) // Time complexity O(n^2) an
         {
             j++;
         }
-        while (k > 0 && nums[k] == nums[k + 1]) // remove duplicates
+        while (j<k && nums[k] == nums[k + 1]) // remove duplicates
         {
             k--;
         }
