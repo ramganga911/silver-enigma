@@ -69,13 +69,24 @@ int sumofNode(Node* root){
     int rightSum = sumofNode(root->right);
     return leftSum+rightSum+root->data;
 }
+bool isIdentical(Node*p, Node*q){
+    if(p==NULL && q!=NULL) return false;
+    if(p!=NULL && q==NULL) return false;
+    if(p==NULL && q==NULL) return true;
+    bool isleftSame = isIdentical(p->left, q->left);
+    bool isRightSame = isIdentical(p->right,q->right);
+    return isleftSame&& isRightSame && (p->data == q->data);
+}
 int main(){
     vector<int> preorder = {1,2,-1,-1,3,4,-1,-1,5,-1,-1};
-    Node* root = BuildTree(preorder);  
+    Node* root = BuildTree(preorder);
+    Node *p = BuildTree(preorder);
+    Node *q = BuildTree(preorder);
     // preOrder(root);
     levelOrder(root);
     cout << height(root)<<endl;
     cout << countNode(root)<<endl;
     cout << sumofNode(root)<< endl;
+    cout << isIdentical(p, q);
     return 0;
 }
